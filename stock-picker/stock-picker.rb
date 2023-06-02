@@ -1,9 +1,11 @@
-def get_stock_prices_input
-  puts "Enter the number of days, minimum price, and maximum price (separated by commas):"
-  input = gets.chomp
-  num_days, min_price, max_price = input.split(",").map(&:to_i)
+def generate_random_stock_prices
+  num_days = rand(5..10)    # Generate a random number between 5 and 10 for the number of days
+  min_price = rand(1..50)   # Generate a random number between 1 and 50 for the minimum price
+  max_price = rand(51..100) # Generate a random number between 51 and 100 for the maximum price
+
   [num_days, min_price, max_price]
 end
+
 
 def generate_stock_prices(num_days, min_price, max_price)
   prices = []
@@ -14,7 +16,7 @@ def generate_stock_prices(num_days, min_price, max_price)
   prices
 end
 
-num_days, min_price, max_price = get_stock_prices_input
+num_days, min_price, max_price = generate_random_stock_prices
 prices = generate_stock_prices(num_days, min_price, max_price)
 
-p prices
+p "These are the prices #{prices} in a #{num_days} days span"
