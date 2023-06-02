@@ -6,13 +6,19 @@ puts "By how much do you want to shift?"
 
 shift_value = gets.chomp.to_i
 
-ascii_array = input.map { |char| char.ord}
+ciphered_chars = input.map do |char|
+    ascii_value = char.ord
+    shifted_value = ascii_value - shift_value
+  
+    if char.match?(/[a-z]/)
+      ((shifted_value - 97) % 26 + 97).chr
+    elsif char.match?(/[A-Z]/)
+      ((shifted_value - 65) % 26 + 65).chr
+    else
+      char
+    end
+  end
 
-shift_and_translation = ascii_array.map { |char| (char - shift_value).chr}
+ciphered_text = ciphered_chars.join
 
-joined = shift_and_translation.join
-
-# p input
-# p ascii_array
-# p shift_and_translation
-p joined
+p ciphered_text
